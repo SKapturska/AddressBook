@@ -1,6 +1,6 @@
 package addressbook;
 
-public class Person {
+public class Person implements Comparable{
     private String lastName;
     private String firstName;
     private String city;
@@ -43,6 +43,12 @@ public class Person {
 
     public void setPhoneNumber(int phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    @Override
+    public int compareTo(Object t) {
+        String lastName = ((Person)t).getLastName();
+        return (this.lastName.compareTo(lastName));
     }
     
     

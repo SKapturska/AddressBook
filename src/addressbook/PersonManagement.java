@@ -1,6 +1,7 @@
 package addressbook;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -8,7 +9,7 @@ public class PersonManagement {
 
     List<Person> people = new ArrayList<Person>();
 
-    public void addToBook() {
+    private void addToBook() {
         Scanner sc = new Scanner(System.in);
         String lastName;
         String firstName;
@@ -30,7 +31,7 @@ public class PersonManagement {
         people.add(new Person(lastName, firstName, city, phoneNumber));
     }
 
-    public void showPeople() {
+    private void showPeople() {
         for (int i = 0; i < people.size(); i++) {
             Person p = people.get(i);
             System.out.println("Nazwisko: " + p.getLastName() + " Imię: " + p.getFirstName() + " Miasto: " + p.getCity() + " Numer telefonu: " + p.getPhoneNumber() + "\n");
@@ -40,19 +41,22 @@ public class PersonManagement {
     public void menu() {
         Scanner sc = new Scanner(System.in);
         int chosen = 0;
-        do{
         do {
-            System.out.print("1: Wpisz człowieka \n2: Wypisz człowieków \n3: Wyjście \n");
-            chosen = sc.nextInt();
-        } while (chosen != 1 && chosen != 2 && chosen != 3);
-        if (chosen == 1) {
-            addToBook();
-        } else if (chosen == 2) {
-            showPeople();
-        } else if (chosen == 3) {
+            do {
+                System.out.print("1: Wpisz człowieka \n2: Wypisz człowieków \n3: Wyjście \n");
+                chosen = sc.nextInt();
+            } while (chosen != 1 && chosen != 2 && chosen != 3);
 
-        }
-        }while(chosen != 3);
+            if (chosen == 1) {
+                addToBook();
+            } else if (chosen == 2) {
+                Collections.sort(people);
+                showPeople();
+            } else if (chosen == 3) {
+                
+            }
+
+        } while (chosen != 3);
 
     }
 
